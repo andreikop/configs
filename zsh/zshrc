@@ -1,0 +1,137 @@
+# Path to your oh-my-zsh installation.
+export ZSH=/home/a/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="gitster"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git golang docker)
+
+# User configuration
+
+
+export PATH="/home/a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/a/bin/:/opt/montavista/pro/devkit/arm/v5t_le/bin/:/usr/local/nginx/sbin/:/home/a/code/lentest:/usr/local/ffmpeg/bin:/home/a/.rvm/bin:/usr/local/go/bin:/usr/local/go/bin"
+
+export PATH="/home/a/code/bin/":$PATH
+
+#
+# Go
+#
+export GOPATH=/home/a/code:/home/a/code/kipod-x:/home/a/code/kipod-x/gochannel
+export GOROOT=/usr/local/go
+export PATH="$GOPATH/bin/:$PATH"
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+
+function kx_context() {
+if [[ -z "$KX_CONTEXT" ]]; then
+	echo ""
+elif [[ "$KX_CONTEXT" == "dev" ]]; then
+	echo "%{$bg[red]%}DEV CLUSTER%{$reset_color%} "
+else
+	echo "%{$fg[red]%}$KX_CONTEXT%{$reset_color%} "
+fi
+}
+
+export PROMPT="%{$fg[green]%}%m%{$reset_color%} %{\$(kx_context)%}$PROMPT"
+
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+setopt NO_SHARE_HISTORY
+
+
+
+alias m='make -j8 $@'
+alias ma='make -j8 all'
+alias mp='make -j8 push'
+alias map='make -j8 all && make -j8 push'
+alias mai='make all -j8 && make install'
+alias mcai='make clean && make all -j8 && make install'
+
+alias s3-vg-fast='s3cmd --host=10.1.255.202:8800 --host-bucket "10.1.255.202:8800/%(bucket)" --access_key=NFcp0YQY1hXiqwBmllZj --secret_key=RL5yKvI2WEwDwuHw7QHWR00oBHmofFspH0WUqlKI --no-ssl'
+alias s3-vg-slow='s3cmd --host=10.1.255.202:8800 --host-bucket "10.1.255.202:8800/%(bucket)" --access_key=GW1uEJIHcO6AGBeLOtJH  --secret_key=ZXaCR2R1mdZIdm5AE0M5Cl5Fvo7Eu7S4c4tvzRQQ --no-ssl'
+
+alias s3-dev-slow='s3cmd --host=10.8.0.254:81 --host-bucket "10.8.0.254:81/%(bucket)" --access_key=GW1uEJIHcO6AGBeLOtJH  --secret_key=ZXaCR2R1mdZIdm5AE0M5Cl5Fvo7Eu7S4c4tvzRQQ --no-ssl'
+
+
+
+alias kxenv='source /home/a/kxenv/bin/activate'
+alias kpenv='source /home/a/kpenv/bin/activate'
+alias ksenv='source /home/a/ksenv/bin/activate'
+
+alias subl='subl -n'
+
+alias kl='kubectl logs -f'
+
+source <(kubectl completion zsh)
