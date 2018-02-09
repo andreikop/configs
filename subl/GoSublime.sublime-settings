@@ -1,0 +1,19 @@
+{
+	"autocomplete_suggest_imports": true,
+	"autocomplete_snippets": false,
+
+	"comp_lint_enabled": true,
+	"gslint_timeout": 10000,
+
+    "comp_lint_commands": [
+        {"cmd": ["gofmt", "-e", "$_fn"]},
+        {"cmd": ["go", "vet"]},
+        {"cmd": ["golint", "$_fn"], "shell": true},
+    ],
+
+	"env": {
+		"GOPATH": "/home/a/code",
+		"GOROOT": "/usr/local/go"
+	},
+	"gscomplete_enabled": false,
+}

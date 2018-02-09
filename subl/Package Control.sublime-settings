@@ -1,0 +1,29 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AdvancedNewFile",
+		"Agila Theme",
+		"Boxy Theme",
+		"CMake",
+		"Colorsublime",
+		"DocBlockr",
+		"Dockerfile Syntax Highlighting",
+		"Environment Settings",
+		"Git",
+		"GoSublime",
+		"Markdown Preview",
+		"Material Theme",
+		"nginx",
+		"Package Control",
+		"Pylinter",
+		"SublimeLinter",
+		"SublimeLinter-pep8",
+		"Theme - Lanzhou",
+		"Vintageous"
+	]
+}

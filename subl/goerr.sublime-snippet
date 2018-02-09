@@ -1,0 +1,9 @@
+<snippet>
+    <content>if err != nil {
+	return err
+}
+</content>
+    <tabTrigger>ree</tabTrigger>
+	<scope>source.go</scope>
+    <description>Golang return error</description>
+</snippet>
