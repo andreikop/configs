@@ -1,11 +1,20 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/a/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="gitster"
+# Path to your oh-my-zsh installation.
+  export ZSH=/home/ak/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,39 +58,15 @@ ZSH_THEME="gitster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git golang docker)
-
-# User configuration
-
-
-export PATH="/home/a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/a/bin/:/opt/montavista/pro/devkit/arm/v5t_le/bin/:/usr/local/nginx/sbin/:/home/a/code/lentest:/usr/local/ffmpeg/bin:/home/a/.rvm/bin:/usr/local/go/bin:/usr/local/go/bin"
-
-export PATH="/home/a/code/bin/":$PATH
-
-#
-# Go
-#
-export GOPATH=/home/a/code:/home/a/code/kipod-x:/home/a/code/kipod-x/gochannel
-export GOROOT=/usr/local/go
-export PATH="$GOPATH/bin/:$PATH"
-
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
 
+# User configuration
 
-function kx_context() {
-if [[ -z "$KX_CONTEXT" ]]; then
-	echo ""
-elif [[ "$KX_CONTEXT" == "dev" ]]; then
-	echo "%{$bg[red]%}DEV CLUSTER%{$reset_color%} "
-else
-	echo "%{$fg[red]%}$KX_CONTEXT%{$reset_color%} "
-fi
-}
-
-export PROMPT="%{$fg[green]%}%m%{$reset_color%} %{\$(kx_context)%}$PROMPT"
-
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -97,7 +82,7 @@ export PROMPT="%{$fg[green]%}%m%{$reset_color%} %{\$(kx_context)%}$PROMPT"
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -108,30 +93,14 @@ export PROMPT="%{$fg[green]%}%m%{$reset_color%} %{\$(kx_context)%}$PROMPT"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-setopt NO_SHARE_HISTORY
+# for docker-compose completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
+unsetopt share_history
 
+export PATH=/home/ak/anaconda2/bin:${PATH}
 
-alias m='make -j8 $@'
-alias ma='make -j8 all'
-alias mp='make -j8 push'
-alias map='make -j8 all && make -j8 push'
-alias mai='make all -j8 && make install'
-alias mcai='make clean && make all -j8 && make install'
+export PATH=$PATH:/usr/local/go/bin
 
-alias s3-vg-fast='s3cmd --host=10.1.255.202:8800 --host-bucket "10.1.255.202:8800/%(bucket)" --access_key=NFcp0YQY1hXiqwBmllZj --secret_key=RL5yKvI2WEwDwuHw7QHWR00oBHmofFspH0WUqlKI --no-ssl'
-alias s3-vg-slow='s3cmd --host=10.1.255.202:8800 --host-bucket "10.1.255.202:8800/%(bucket)" --access_key=GW1uEJIHcO6AGBeLOtJH  --secret_key=ZXaCR2R1mdZIdm5AE0M5Cl5Fvo7Eu7S4c4tvzRQQ --no-ssl'
-
-alias s3-dev-slow='s3cmd --host=10.8.0.254:81 --host-bucket "10.8.0.254:81/%(bucket)" --access_key=GW1uEJIHcO6AGBeLOtJH  --secret_key=ZXaCR2R1mdZIdm5AE0M5Cl5Fvo7Eu7S4c4tvzRQQ --no-ssl'
-
-
-
-alias kxenv='source /home/a/kxenv/bin/activate'
-alias kpenv='source /home/a/kpenv/bin/activate'
-alias ksenv='source /home/a/ksenv/bin/activate'
-
-alias subl='subl -n'
-
-alias kl='kubectl logs -f'
-
-source <(kubectl completion zsh)
+alias qmake='qmake -qt=5'
