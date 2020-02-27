@@ -1,32 +1,14 @@
 [user]
-	name = Andrei Kopats\n
-	email = andrei.kopats@synesis.ru
+	email = andrei.kopats@gmail.com
+	name = Andrei Kopats
 [core]
-	editor = vim
-[color]
-	ui = true
-[giggle]
-	main-window-maximized = false
-	main-window-geometry = 700x550+65+24
-	history-view-vpane-position = 315
-	main-window-view = FileView
-	file-view-vpane-position = 802
-[merge]
-	conflictstyle = diff3
-	tool = meld
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
-	trustExitCode = true
-[branch]
-	autosetuprebase = always
+	editor = enki-ng
 [alias]
-	ch = checkout
-	amend = commit -a --amend
-	stat = diff --stat
-	format-commit = !git format-patch ${1}~..${1}
-    oneline = "!f () { git log ${1} --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R; }; f"
-    ffmerge = merge --ff-only
+	oneline = "!f () { git log ${1} --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R; }; f"
+    amend = commit -a --amend
 [push]
 	default = simple
-[mergetool]
-	keepBackup = false
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
